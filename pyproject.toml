@@ -1,0 +1,49 @@
+[project]
+name = "bank-app"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "user",email = "user@user.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "requests (>=2.32.3,<3.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+flake8 = "^7.2.0"
+isort = "^6.0.1"
+mypy = "^1.15.0"
+pytest = "^8.3.5"
+pytest-cov = "^6.1.1"
+types-requests = "^2.32.0.20250328"
+pandas-stubs = "^2.2.3.250308"
+
+[tool.black]
+line-length = 119
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | venv
+)/
+'''
+
+[tool.mypy]
+disallow_untyped_defs = true
+warn_return_any = true
+exclude = "venv/"
+
+[tool.isort]
+line_length = 119
+
