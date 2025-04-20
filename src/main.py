@@ -1,5 +1,6 @@
-from src.views import main_page_view
 import json
+
+from src.views import main_page_view
 
 if __name__ == "__main__":
     result = main_page_view("2018-02-10 12:06:09")

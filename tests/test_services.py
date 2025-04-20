@@ -1,5 +1,7 @@
-import pytest
 from typing import Any, Dict, List
+
+import pytest
+
 from src.services import investment_bank, simple_search
 
 
@@ -8,7 +10,7 @@ def example_transactions() -> List[Dict[str, Any]]:
     return [
         {"Дата операции": "2023-12-01", "Сумма операции": 123},
         {"Дата операции": "2023-12-15", "Сумма операции": 200},
-        {"Дата операции": "2023-11-01", "Сумма операции": 50}
+        {"Дата операции": "2023-11-01", "Сумма операции": 50},
     ]
 
 
@@ -29,8 +31,6 @@ def test_simple_search_found() -> None:
 
 
 def test_simple_search_not_found() -> None:
-    transactions = [
-        {"Описание": "Оплата", "Категория": "Услуги"}
-    ]
+    transactions = [{"Описание": "Оплата", "Категория": "Услуги"}]
     result = simple_search("такси", transactions)
     assert result == []

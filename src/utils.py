@@ -1,12 +1,13 @@
 import json
 import logging
-import pandas as pd
-from datetime import datetime
-from typing import List, Dict, Any
-import requests
 import os
+from datetime import datetime
+from typing import Any, Dict, List
 
+import pandas as pd
+import requests
 from dotenv import load_dotenv
+
 load_dotenv()
 
 logger = logging.getLogger(__name__)
@@ -22,7 +23,7 @@ def load_data(filepath: str) -> pd.DataFrame:
     """
     try:
         df = pd.read_excel(filepath)
-        df['Дата операции'] = pd.to_datetime(df['Дата операции'], dayfirst=True)
+        df["Дата операции"] = pd.to_datetime(df["Дата операции"], dayfirst=True)
         return df
     except Exception as e:
         logger.error(f"Ошибка при загрузке данных: {e}")
@@ -40,7 +41,7 @@ def filter_by_date(df: pd.DataFrame, date_str: str) -> pd.DataFrame:
     try:
         target_date = pd.to_datetime(date_str)
         start_of_month = target_date.replace(day=1)
-        filtered = df[(df['Дата операции'] >= start_of_month) & (df['Дата операции'] <= target_date)]
+        filtered = df[(df["Дата операции"] >= start_of_month) & (df["Дата операции"] <= target_date)]
         return filtered
     except Exception as e:
         logger.error(f"Ошибка при фильтрации по дате: {e}")
@@ -54,7 +55,7 @@ def get_user_settings(filepath: str = "user_settings.json") -> Dict[str, List[st
     :param filepath: Путь к JSON-файлу
     :return: Словарь с настройками
     """
-    with open(filepath, 'r', encoding='utf-8') as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         return dict(json.load(f))
 
 
